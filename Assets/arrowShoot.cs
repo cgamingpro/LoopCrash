@@ -5,7 +5,7 @@ using UnityEngine;
 public class arrowShoot : MonoBehaviour
 {
    
-    [SerializeField] float bulletForce = 10f;
+    public float bulletForce = 10f;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] GameObject shootORigon;
     [SerializeField] AudioClip shootSound;

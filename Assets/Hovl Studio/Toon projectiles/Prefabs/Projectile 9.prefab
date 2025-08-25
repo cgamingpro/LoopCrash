@@ -4997,6 +4997,7 @@ MonoBehaviour:
   wallhit: {fileID: 8300000, guid: bca37a64604704def8659e7c2769936d, type: 3}
   playethit: {fileID: 8300000, guid: 23521bf6cf1e34f51ba1a86ec9553326, type: 3}
   brokenarrow: {fileID: 8300000, guid: 2bd37df2fb96f4d978c1f706701ce87f, type: 3}
+  hitParticalefect: {fileID: 1426864532553638, guid: 8281469a426430648ad0bf11c78fc3a2, type: 3}
 --- !u!82 &2613445374440528506
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9876,7 +9877,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 4b963661ff30bb44cb43409db4141e79, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14712,7 +14712,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 2ac0fd9fa7d384047a598dbfb7c2f044, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -24,16 +24,33 @@ public class playerMovment : MonoBehaviour
     [SerializeField] float realodTime = 2f;
     bool isrloading = false;
     [SerializeField] GameObject projectileShow;
+    float camOriginaFov;
+    [SerializeField] float reloadCamraSmoth;
+    AudioSource audioSource;
+    [SerializeField]AudioClip walk;
+    [SerializeField] Material bowmaterla;
+    Color bowcolor;
+
+   
     void Start()
     {
         cam = Camera.main;
         bow = transform.GetChild(0);
+        
+
+        bowcolor = bowmaterla.color;
         arrowShoot = bow.GetComponent<arrowShoot>();
+        
         Cursor.visible = false;
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = walk; 
+        audioSource.Play();
+        camOriginaFov = cam.orthographicSize;
     }
 
     void Update()
     {
+       
         ammoCount_text.text = AmmoCOunt.ToString();
         score_text.text = score.ToString();
         float MoveX = Input.GetAxisRaw("Horizontal");
@@ -47,7 +64,14 @@ public class playerMovment : MonoBehaviour
         move = Vector3.Lerp(move, moveDir, moveSmooth);
         transform.position += move * Time.deltaTime * moveSpeed;
 
-
+        if (move.magnitude > 0f)
+        {
+            audioSource.volume = 0.5f;
+        }
+        else
+        {
+            audioSource.volume = 0;
+        }
 
 
         // Get mouse world position with proper Z distance  
@@ -77,16 +101,24 @@ public class playerMovment : MonoBehaviour
                 Debug.Log("reloaded");
                 
             }
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, camOriginaFov + 2, reloadCamraSmoth);
+            bowcolor.a = 0.2f;
         }
+        else
+        {
+            bowcolor.a = 1f;
+        }
+        
 
-       if (Input.GetMouseButtonDown(0) && canshoot && !isrloading)
+       if (Input.GetKeyDown(KeyCode.Mouse0) && canshoot && !isrloading)
        {
             shootArrow();
        }
-       if (Input.GetKeyDown(KeyCode.R) && AmmoCOunt > 0)
+       if (Input.GetKeyDown(KeyCode.R) && AmmoCOunt > 0 && !canshoot)
        {
             timmer = 0f;
             isrloading = true;
+
        }
 
        if(canshoot)
@@ -107,6 +139,8 @@ public class playerMovment : MonoBehaviour
         {
             crossairObj.GetComponent<SpriteRenderer>().sprite = hitcross;
         }
+
+        bowmaterla.color = bowcolor;
     }
 
 

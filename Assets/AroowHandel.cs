@@ -13,6 +13,7 @@ public class AroowHandel : MonoBehaviour
     [SerializeField]AudioClip playethit;
     [SerializeField]AudioClip brokenarrow;
     AudioSource AudioSource;
+    [SerializeField] GameObject hitParticalefect;
     private void Start()
     {
         player = GameObject.FindWithTag("Player");
@@ -33,6 +34,7 @@ public class AroowHandel : MonoBehaviour
                
                 Debug.Log("force aded");
             }
+            Instantiate(hitParticalefect,transform.position, Quaternion.identity);
 
         }
         
@@ -45,6 +47,7 @@ public class AroowHandel : MonoBehaviour
             rb.AddForce(direction * returnSpeed, ForceMode.Impulse);
             wallcollsion++;
             AudioSource.PlayOneShot(wallhit);
+            Instantiate(hitParticalefect, transform.position, Quaternion.identity);
         }
 
         if(other.CompareTag("Player"))
