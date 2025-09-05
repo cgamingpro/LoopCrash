@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
@@ -31,6 +32,10 @@ public class playerMovment : MonoBehaviour
     [SerializeField] Material bowmaterla;
     Color bowcolor;
 
+
+
+
+  
    
     void Start()
     {
@@ -114,6 +119,10 @@ public class playerMovment : MonoBehaviour
        {
             shootArrow();
        }
+    
+
+      
+
        if (Input.GetKeyDown(KeyCode.R) && AmmoCOunt > 0 && !canshoot)
        {
             timmer = 0f;
@@ -144,6 +153,7 @@ public class playerMovment : MonoBehaviour
     }
 
 
+    
     void shootArrow()
     {
         arrowShoot.Shoot();

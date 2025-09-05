@@ -34,7 +34,9 @@ public class arrowShoot : MonoBehaviour
         if (bullet.GetComponent<Rigidbody>() == null) { Debug.Log("no rigidlb"); }
         bullet.GetComponent<Rigidbody>().AddForce(shootORigon.transform.up * bulletForce, ForceMode.Impulse);
         bullet.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.Continuous;
-        
+    
+
+
 
     }
 }

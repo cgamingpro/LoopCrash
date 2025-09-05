@@ -6,8 +6,9 @@ public class ApplyDamage : MonoBehaviour
 {
     [SerializeField] int health = 100;
     int maxHalth;
-    [SerializeField] Renderer enmyRender;
-    Color col;
+    float healthchange = 1;
+    [SerializeField] Material mat;
+  
     playerMovment playermmnt;
     trailSpawner trailSpawner;
     [SerializeField]AudioClip audioClip;
@@ -15,8 +16,9 @@ public class ApplyDamage : MonoBehaviour
     
     private void Start()
     {
-        enmyRender = GetComponent<Renderer>();
-        col = enmyRender.material.color;
+       
+        mat = GetComponent<Renderer>().material;
+        
         maxHalth = health;
         playermmnt = GameObject.FindWithTag("Player").GetComponent<playerMovment>();
         trailSpawner = GameObject.FindWithTag("Player").GetComponent<trailSpawner>();
@@ -32,10 +34,13 @@ public class ApplyDamage : MonoBehaviour
             Destroy(gameObject);
         }
         audioSource.PlayOneShot(audioClip);
+       
     }
     private void Update()
     {
-        col.a = health / maxHalth;
-        enmyRender.material.color = col;
+        
+        healthchange = Mathf.Lerp(healthchange, health / (float)maxHalth, Time.deltaTime * 5);
+        mat.SetFloat("_health", healthchange); 
+     
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AroowHandel : MonoBehaviour
 {
-    [SerializeField] int damge = 10;
+    public int damge = 45;
     Rigidbody rb;
     GameObject player;
     [SerializeField] float returnSpeed;
